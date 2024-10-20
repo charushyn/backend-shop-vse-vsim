@@ -4,6 +4,10 @@ import { configDotenv } from "dotenv";
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 
+import path from 'path';
+
+import crypto from 'crypto'
+
 
 
 configDotenv();
@@ -31,7 +35,8 @@ app.use('', crmRoute)
 app.use('', authRouter)
 app.use('', excelRoute)
 
-app.use('/images', express.static(`${process.env.PATH_TO_IMAGES}`))
+
+app.use('/images', express.static(`${path.resolve("")}/images`))
 
 const PORT = process.env.PORT
 
