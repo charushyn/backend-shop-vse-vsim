@@ -30,7 +30,7 @@ authRouter.post("/login", (req, res) => {
   res.setHeader(
     "Set-Cookie",
     cookie.serialize("refreshToken", refreshToken, {
-//      domain: process.env.DOMAIN,
+      domain: process.env.DOMAIN,
       httpOnly: true,
       maxAge: refreshTokenTokenAge,
     })
@@ -50,6 +50,7 @@ authRouter.get("/logout", (req, res) => {
   res.setHeader(
     "Set-Cookie",
     cookie.serialize("refreshToken", "", {
+      domain: process.env.DOMAIN,
       httpOnly: true,
       maxAge: 0,
     })

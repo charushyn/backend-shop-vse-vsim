@@ -16,10 +16,10 @@ configDotenv();
 import crmRoute from './routes/crm/index.js';
 import authRouter from './routes/auth/index.js';
 import excelRoute from './routes/excel/index.js';
+import npRoute from './routes/novapost/index.js';
 
 const app = express()
 app.use(cookieParser())
-app.use(express.json())
 
  
 app.use(cors({
@@ -28,12 +28,17 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }));
 
+app.use('', crmRoute)
+// app.use('', npRoute)
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
-app.use('', crmRoute)
+
 app.use('', authRouter)
 app.use('', excelRoute)
+
+
 
 
 app.use('/images', express.static(`${path.resolve("")}/images`))

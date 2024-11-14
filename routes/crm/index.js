@@ -12,7 +12,11 @@ const allowedEndPoints = [
 ]
 
 const proxyFilter = function(path, req){
-  return req.method === 'GET' // && allowedEndPoints.includes(path)
+  if(req.method === "GET"){
+    return true
+  } else {
+    return false
+  }
 }
 
 const proxyMiddleware = createProxyMiddleware({
@@ -22,6 +26,7 @@ const proxyMiddleware = createProxyMiddleware({
   on: {
     proxyReq: (proxyReq) => {
       proxyReq.setHeader('Authorization', `Bearer ${process.env.CRM_TOKEN}`)
+      proxyReq.setHeader('Content-Type', 'application/json')
     }
   }
 })

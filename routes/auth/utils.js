@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken"
+import cookie from 'cookie'
 import { configDotenv } from "dotenv";
 
 configDotenv();
@@ -19,6 +20,7 @@ const verifyRefreshTokenMiddleware = (req, res, next) => {
     res.setHeader(
       "Set-Cookie",
       cookie.serialize("refreshToken", "", {
+        domain: process.env.DOMAIN,
         httpOnly: true,
         maxAge: 0,
       })
